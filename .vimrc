@@ -1,26 +1,41 @@
-"***************************************************************************************************************************************"
-"       SUNUS'S VIMRC                                                                                                                   "
-"       last modified   :                                                                               Sat Sep 29 15:15:22 CST 2012    "
-"       update log:                                                                                                                     "
-"                                                                                                                                       "
-"               keys            descriptions                                                                            data            "
-"                                                                                                                                       "
-"       added   'F4'            comment / 'F5'Un-comment feature                                                                        "
-"       added   'F2'            Fold    / 'F3'Un-Fold feature                                                                           "
-"       added   '\h'            show a decimal value's hex value                                                                        "
-"       added   '\\h'           replace a decimal value with it's hex value                                             15, Mar, 2011   "
-"       added   NONE(gf)        added current directory to the 'path' , for file-searching convenience                  25, Mar, 2011   "
-"       added   'H','L'         move to the beginning of the line Or 'L' to the ending of the line                      25, Mar, 2011   "
-"       added   'gb'            move back to the file that just 'gf',gb for "go back"                                   25, Mar, 2011   "
-"       added   NONE            added gtk headers directory to the 'path' , for file-searching convenience              10, Apr, 2011   "
-"       added   NONE            added a gtk header's tags                                                               12, Apr, 2011   *
-"       added   Shift+Tab       added Tab support in makefile                                                           19, Apr, 2011   *
-"       added   py              added python headers(utf-8 and python2.7) for convenience                               17, Fri, 2012   *
-"       added   F9              insert current date.[in INSERT mode]                                                    30, Apr, 2012   *
-"       added   F8              run pep8 checker to check python codes.                                                 20, Jul, 2012   *
-"       added   'F4'            comment / 'F5'Un-comment feature (add c/python auto select support)      Sat Sep 29 14:40:13 CST 2012   *
-"       added   F9              insert current date.[in INSERT mode](make it more easy to use)           Sat Sep 29 15:13:45 CST 2012   *
-"***************************************************************************************************************************************"
+"**********************************************************************************************"
+"       SUNUS'S VIMRC                                                                         "
+"       last modified   :                                                       Oct 13,2012   "
+"       update log:                                                                           "
+"                                                                                             "
+"               keys            descriptions                                    data          "
+"                                                                                             "
+"       added   'F4'            comment / 'F5'Un-comment feature                              "
+"       added   'F2'            Fold    / 'F3'Un-Fold feature                                 "
+"       added   '\h'            show a decimal value's hex value                              "
+"       added   '\\h'           replace a decimal value with it's hex value     Mar 15, 2011  "
+"       added   NONE(gf)        added current directory to the 'path' , for                   "
+"                               file-searching convenience                      Mar 25, 2011  "
+"       added   'H','L'         move to the beginning of the line Or 'L' to                   "
+"                               the ending of the line                          Mar 25, 2011  "
+"       added   'gb'            move back to the file that just 'gf'                          "
+"                               gb for "go back"                                Mar 25, 2011  "
+"       added   NONE            added gtk headers directory to the 'path' ,                   "
+"                               for file-searching convenience                  Apr 10, 2011  "
+"       added   NONE            added a gtk header's tags                       Apr 12, 2011  "
+"       added   Shift+Tab       added Tab support in makefile                   Apr 19, 2011  "
+"       added   py              added python headers(utf-8 and python2.7) for                 "
+"                               convenience                                     May 17, 2012  "
+"       added   F9              insert current date.[in INSERT mode]            Unknown       "
+"       added   F8              run pep8 checker to check python codes.         Jul 20, 2012  "
+"       added   'F4'            comment / 'F5'Un-comment feature                              "
+"                               (add c/python auto select support)              Sep 29, 2012  "
+"       added   F9              insert current date.[in INSERT mode]                          "
+"                               (make it more easy to use)                      Sep 29, 2012  "
+"       added   kernel C style  Using 8 spaces for c indentation(tab)                         "
+"                               it's Kernel C style.                            Oct 13, 2012  "
+"       changed 'gb'            from CTRL+^ to CTRL+t                           Nov 12, 2012  "
+"       added                   Highlight the trailing spaces.                  Nov 29, 2012  "
+"       added  'g*'             global search all the opening tabs with current               *
+"                               position word.                                  Nov 29, 2012  *
+"       added                   mouse support.                                  Dec 06, 2012  *
+"       added                   letting cusor open at last closed position.     Dec 18  2012  *
+"*********************************************************************************************"
 
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
 " /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
@@ -94,14 +109,14 @@ endif
 set csverb
 endif
 
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>s :cs find s <C-R>=<CR>
+nmap <C-\>g :cs find g <C-R>=<CR>
+nmap <C-\>c :cs find c <C-R>=<CR>
+nmap <C-\>t :cs find t <C-R>=<CR>
+nmap <C-\>e :cs find e <C-R>=<CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=<CR>
 
 map <C-w>h :vertical resize +3<CR><CR>
 map <C-w>j :vertical resize -3<CR><CR>
@@ -133,10 +148,11 @@ set path+=/usr/include/gtk-2.0/
 
 " add gtk headers tags
 set tags+=/usr/include/gtk-2.0/tags
-" more convenience movement to the beginning / end of the line (NORMAL mode only!)
+" more convenience movement to the beginning / end of the line 
+" (NORMAL mode only!)
 nmap L $
 nmap H ^
-nmap gb <C-^>
+nmap gb <C-t>
 nmap <F9> <ESC>:read !date<CR>i<BS><ESC>
 imap <F9> <ESC>:read !date<CR>i<BS><ESC>Li<RIGHT><SPACE>
 "add tab support in makefile"
@@ -146,8 +162,33 @@ filetype plugin on
 filetype indent on
 nmap py i#!/usr/bin/env python<CR># encoding=utf-8<ESC>
 let pep8_map='<F8>'
-colorscheme desert
 set background=light
 hi TabLineSel ctermfg=Blue ctermbg=Grey
 autocmd filetype python set foldmethod=indent foldlevel=20 cc=80
 autocmd filetype c set foldmethod=syntax foldlevel=20
+" Using kernel C style for indentation.(8 spaces.)
+autocmd filetype c set softtabstop=8 sw=8 ts=8
+
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Sunus Lee"
+let g:neocomplcache_enable_at_startup = 1
+" Fix backspace problems
+set backspace=2
+set backspace=indent,eol,start
+
+" highlight the trailing spaces.
+autocmd VimEnter * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd VimEnter * match ExtraWhitespace /\s\+$/
+
+" global search all the tabs with current position word.
+nmap g* :tabdo :g/<c-r><c-w>/<CR>
+
+set mouse=a
+
+" letting cusor open at last closed position.
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
